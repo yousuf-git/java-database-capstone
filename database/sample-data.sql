@@ -8,6 +8,9 @@
 --   doctors:  doctor@123
 --   patients: patient@123
 --
+-- Phone numbers are Pakistani mobile numbers without the leading zero, because the column
+-- holds exactly 10 digits (for example 0300 1234567 is stored as 3001234567).
+--
 -- Appointment dates are relative to the day the script is run, so there are always past
 -- (completed), today's, and upcoming (scheduled) appointments to work with.
 -- Rows use fixed IDs so the MongoDB prescriptions can reference appointments by ID; running the
@@ -16,20 +19,20 @@
 START TRANSACTION;
 
 INSERT INTO admin (id, username, password) VALUES
-  (1, 'admin', '$2b$10$XP1TULq2hLE3sg1jt9/jx.qOepNjLDG1Dm78FQ82dAIQrWa9qGqIy'),
-  (2, 'clinic_manager', '$2b$10$EVtAIKIuxuCUp0FsQEr/fuw9EsNYxiLZI1um8lvpHdqxF6ezaaSJ2');
+  (1, 'admin', '$2b$10$XIYoGuWiOb.xMwqP7r/UwuFsjBNARRWbQsN/GG23jB4QfnBinnnN2'),
+  (2, 'clinic_manager', '$2b$10$w7Pv3OkDf24boYy.CiZ0CO7ll780AYnhAI0fM5w87TEQa0ZfKsZaS');
 
 INSERT INTO doctor (id, name, specialty, email, password, phone) VALUES
-  (1, 'Dr. Emily Adams', 'Cardiologist', 'emily.adams@smartclinic.com', '$2b$10$uDsAFf7ogz9MvmsttgBwb.iXFap9hFfR6qX50VA/2y0NixXwh82we', '5551012020'),
-  (2, 'Dr. Mark Johnson', 'Neurologist', 'mark.johnson@smartclinic.com', '$2b$10$ELEGEQ./0fqHHrid3HG.RelAErpKqxgkQJCkHXOi9IldITa2wjSge', '5552023030'),
-  (3, 'Dr. Sarah Lee', 'Orthopedist', 'sarah.lee@smartclinic.com', '$2b$10$Gnyeh9GoZC0Aht2ZZAwQHeJDmnjvfy1MZLyOu4L8FrsaeOpCkw4oK', '5553034040'),
-  (4, 'Dr. Tom Wilson', 'Pediatrician', 'tom.wilson@smartclinic.com', '$2b$10$v6upuZF0Glm7g3fsbCT9OOGFmWmRktmzT6d8xqPWInYMOgo.ZW0v6', '5554045050'),
-  (5, 'Dr. Alice Brown', 'Dermatologist', 'alice.brown@smartclinic.com', '$2b$10$JvIcPEnXcU4HwOx5C9BY5.CrCdLP0JQodmTukwziSS5tvcMVNT4si', '5555056060'),
-  (6, 'Dr. David Kim', 'Cardiologist', 'david.kim@smartclinic.com', '$2b$10$nQJFoVB6Mibg.IFXhwLHVuZ1HBzCXt/8T9dbCC1mUyrbJL1GIy9HG', '5556067070'),
-  (7, 'Dr. Laura Martinez', 'Gynecologist', 'laura.martinez@smartclinic.com', '$2b$10$.HZsci49JCxcK8fYh2VDBeNYDBB7XkCBr4EiNZ8Wh/zbjp4b.Yptq', '5557078080'),
-  (8, 'Dr. James Patel', 'General Physician', 'james.patel@smartclinic.com', '$2b$10$..qs6/U3GkcUYfpjANqZ.OWkINOtatXvft875DEaVOjtpTGz43aJS', '5558089090'),
-  (9, 'Dr. Olivia Chen', 'Psychiatrist', 'olivia.chen@smartclinic.com', '$2b$10$BeyyfkIJn/qA1neM3fBwL.qd1qTxjtsKzGQcr2cI1f.lxseUIXpHe', '5559091010'),
-  (10, 'Dr. Robert Garcia', 'ENT Specialist', 'robert.garcia@smartclinic.com', '$2b$10$fWpiDVyDJnyQpWFdl24OduXGwRZPYyLzk6oiew29jfN2F0bK2u6Ci', '5550102121');
+  (1, 'Dr. Ayesha Khan', 'Cardiologist', 'ayesha.khan@smartclinic.pk', '$2b$10$8g9vtlLPAQ.FsNu4j7vsouJRFO0e75TgEMJttOyUjFa8/avYvSTY.', '3001234567'),
+  (2, 'Dr. Bilal Ahmed', 'Neurologist', 'bilal.ahmed@smartclinic.pk', '$2b$10$Lb5Z8kFPSRq36TkV53zSRuqaaXOD44c.n141sqpdoiXi0q1C88gDi', '3211234568'),
+  (3, 'Dr. Sana Malik', 'Orthopedist', 'sana.malik@smartclinic.pk', '$2b$10$f55QGERVH/CUjhrmtFnDOuCc0dsEDVag/bZ9mNXaec3yqCa/Q25ja', '3331234569'),
+  (4, 'Dr. Usman Tariq', 'Pediatrician', 'usman.tariq@smartclinic.pk', '$2b$10$IwK2r4M52RdGnGqGTe.XWeDmmCbraFvMv4B6B4Hlj/DL5kzeh/Fl2', '3451234570'),
+  (5, 'Dr. Hina Shahid', 'Dermatologist', 'hina.shahid@smartclinic.pk', '$2b$10$gOg2M/3jNMkWTHQPGOqCsOGI1zxnOvgrEdIXivdAesbul4Qp956GK', '3011234571'),
+  (6, 'Dr. Imran Qureshi', 'Cardiologist', 'imran.qureshi@smartclinic.pk', '$2b$10$40kIWmtA9LNEmhUc7FT3t.YUQ4CZXgAIKSM4Tex/A54Gsp8DchEMm', '3221234572'),
+  (7, 'Dr. Nadia Aslam', 'Gynecologist', 'nadia.aslam@smartclinic.pk', '$2b$10$hSCUz9TfoytNu9Nix6lhQ.nk.eZteruNdJDxrCkXyRlNl/2PDmBLi', '3341234573'),
+  (8, 'Dr. Faisal Raza', 'General Physician', 'faisal.raza@smartclinic.pk', '$2b$10$Hhn9dgrxx/4JD2Ah5cupC.uK9DMLO6fPj9PPfqeaqhGFNC5/asHUS', '3461234574'),
+  (9, 'Dr. Zainab Iqbal', 'Psychiatrist', 'zainab.iqbal@smartclinic.pk', '$2b$10$HgnsKcAEmGDkRj3vESeGt.ATpfrhQuPp4JW1mvPo5tHbBKF0LGpmm', '3021234575'),
+  (10, 'Dr. Kashif Mehmood', 'ENT Specialist', 'kashif.mehmood@smartclinic.pk', '$2b$10$CWLSZBO0BFRz.WltwVlvSuiSp7WSWirhjldOaPNkrADCcSIITyBxS', '3231234576');
 
 INSERT INTO doctor_available_times (doctor_id, available_times) VALUES
   (1, '09:00-10:00'),
@@ -71,16 +74,16 @@ INSERT INTO doctor_available_times (doctor_id, available_times) VALUES
   (10, '16:00-17:00');
 
 INSERT INTO patient (id, name, email, password, phone, address) VALUES
-  (1, 'John Smith', 'john.smith@example.com', '$2b$10$3lvgw3lGMlQ.iEkwGsctFODMQw4W0.tJaGfR911/vzl8OiJMvvjcO', '5551112222', '12 Oak Street, Springfield'),
-  (2, 'Maria Gonzalez', 'maria.gonzalez@example.com', '$2b$10$.bHH9HLiuhjajCm4Tvf/A.CbRCDhlQqDBiAnWOLh23WyDbKArYqxC', '5552223333', '45 Pine Avenue, Riverside'),
-  (3, 'Ahmed Khan', 'ahmed.khan@example.com', '$2b$10$MC0/3vYHLo.vta3TZhBhZ.WUbB0nVUHmmPWS1AWf4CAkQrrpFGhvC', '5553334444', '78 Maple Road, Lakeside'),
-  (4, 'Priya Sharma', 'priya.sharma@example.com', '$2b$10$S5mVRVXrLIlqLyNBPslFpetqN4qK46.Dt27yqq4ubA94LXX3g2q5S', '5554445555', '9 Cedar Lane, Hillview'),
-  (5, 'Liam O''Connor', 'liam.oconnor@example.com', '$2b$10$iizA3.QmD3PaTQscDFNvLO2Mgdya9y.6KVtXScdbY60SLouWf2PPi', '5555556666', '31 Birch Court, Greenfield'),
-  (6, 'Sofia Rossi', 'sofia.rossi@example.com', '$2b$10$Lo2ShANdGZYlnZQju3f1MuYmGu2..qXOsX4wWcJIKfMe.KcQNcVHq', '5556667777', '64 Elm Street, Brookside'),
-  (7, 'Chen Wei', 'chen.wei@example.com', '$2b$10$hMUpabAzBkPiOlTL7KjtLeveQz3WouJVb79bm7NoXyk2cZDa1N9YK', '5557778888', '22 Willow Way, Fairview'),
-  (8, 'Fatima Noor', 'fatima.noor@example.com', '$2b$10$RujIhkKBTChjcv37dSeJ3eWL7u4M0HRBSNHzrXqFMXqdkDuQJgr0q', '5558889999', '5 Spruce Drive, Westwood'),
-  (9, 'Noah Williams', 'noah.williams@example.com', '$2b$10$QLuVNEKNFaxYk0vgyoS9oOJjv.3m7GWnnlTuZBXuS197IMitJl1bW', '5559990000', '88 Aspen Place, Eastbrook'),
-  (10, 'Emma Davis', 'emma.davis@example.com', '$2b$10$pLR5DX1RiLJCoF5bEu1Cu.no1EUlxN41E7JnRZNqjuIc1iZ6./nG.', '5550001111', '17 Poplar Street, Northgate');
+  (1, 'Ali Hassan', 'ali.hassan@gmail.com', '$2b$10$dlRK1BYZlC6pjCUEitpdKu1BN8vjwoBe8.7.E112oC5e78n0MWZVO', '3009876543', 'House 12, Street 4, Gulshan-e-Iqbal, Karachi'),
+  (2, 'Fatima Noor', 'fatima.noor@gmail.com', '$2b$10$YIJz1Z75FojgeQuz9pUF1uGgSOy0gElfp1mS.pE.ISUcMSpKHTDW2', '3218765432', 'Flat 5B, Askari Heights, DHA Phase 5, Lahore'),
+  (3, 'Hamza Sheikh', 'hamza.sheikh@gmail.com', '$2b$10$ODvuQS7mJmPg.T5aSLfbEeg4uBUWINNGEghqqydw.uagWWKf.OSou', '3337654321', 'House 88, Sector G-11/3, Islamabad'),
+  (4, 'Ayesha Siddiqui', 'ayesha.siddiqui@gmail.com', '$2b$10$NN2cCrBK.YqjhqiVCqqTk.A7zNonciqRDeuuStNJ1Zj4gRDhje.U6', '3456543210', 'House 23, Saddar Cantt, Rawalpindi'),
+  (5, 'Bilal Javed', 'bilal.javed@gmail.com', '$2b$10$3votsnye5U1ddbJmZS1AV.yKybVV/QuOkzDRP75IqlqEwYkmBwvia', '3015432109', 'Plot 7, Model Town Block C, Lahore'),
+  (6, 'Mariam Zafar', 'mariam.zafar@gmail.com', '$2b$10$kJvT5fhz673dM7WrrxRR8OpqI6KIjn/z9yENmtZPD/pOVcbIWmMKy', '3224321098', 'House 45, University Road, Peshawar'),
+  (7, 'Saad Rehman', 'saad.rehman@gmail.com', '$2b$10$bCfNMqwpmho.WjDLxQpUC.ul5m698JUBezzfHwfXCrNrFeGbB9jyW', '3343210987', 'House 9, Satellite Town, Multan'),
+  (8, 'Hira Aslam', 'hira.aslam@gmail.com', '$2b$10$ES2rgqCYCL151xbZCzDC9edHYjV01uVvWLg2AmgnPPD1m1YYjTjQG', '3462109876', 'Flat 302, Clifton Block 2, Karachi'),
+  (9, 'Ahmed Raza', 'ahmed.raza@gmail.com', '$2b$10$4pMZFsYdPvISNJd4QhO6wuLItFEqzperNxHDJtz.KkXfyIpWGC.CO', '3021098765', 'House 61, Johar Town, Lahore'),
+  (10, 'Sadia Khan', 'sadia.khan@gmail.com', '$2b$10$imw8b1pAHIO5X6k.CFafB.rYlszMRCtq3/qHnAMlviIqiV1Vrf68u', '3230987654', 'House 14, Wapda Town, Faisalabad');
 
 -- status: 1 = completed (past appointments), 0 = scheduled (today and later)
 INSERT INTO appointment (id, doctor_id, patient_id, appointment_time, status) VALUES

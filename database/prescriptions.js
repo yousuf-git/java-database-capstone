@@ -26,18 +26,18 @@ db.prescriptions.createIndex({ appointmentId: 1 }, { name: "appointmentId" });
 
 const result = db.prescriptions.insertMany([
   {
-    patientName: "John Smith",
+    patientName: "Ali Hassan",
     appointmentId: NumberLong("1"),
     medication: "Atorvastatin",
     dosage: "10 mg once daily at night",
     doctorNotes: "Recheck cholesterol in 3 months.",
     refillCount: 2,
-    pharmacy: { name: "City Care Pharmacy", location: "12 Market Street" },
+    pharmacy: { name: "Shaheen Chemist", location: "Tariq Road, Karachi" },
     tags: ["cholesterol", "cardiology"],
     createdAt: daysAgo(58)
   },
   {
-    patientName: "Maria Gonzalez",
+    patientName: "Fatima Noor",
     appointmentId: NumberLong("2"),
     medication: "Sumatriptan",
     dosage: "50 mg at migraine onset, max 2 per day",
@@ -47,7 +47,7 @@ const result = db.prescriptions.insertMany([
     createdAt: daysAgo(55)
   },
   {
-    patientName: "Ahmed Khan",
+    patientName: "Hamza Sheikh",
     appointmentId: NumberLong("3"),
     medication: "Ibuprofen",
     dosage: "400 mg every 8 hours after meals for 5 days",
@@ -55,17 +55,17 @@ const result = db.prescriptions.insertMany([
     createdAt: daysAgo(52)
   },
   {
-    patientName: "Priya Sharma",
+    patientName: "Ayesha Siddiqui",
     appointmentId: NumberLong("4"),
     medication: "Paracetamol",
     dosage: "250 mg every 6 hours as needed for fever",
     doctorNotes: "Plenty of fluids and rest.",
-    pharmacy: { name: "HealthPlus Pharmacy", location: "5 Station Road" },
+    pharmacy: { name: "D. Watson Chemist", location: "F-10 Markaz, Islamabad" },
     tags: ["fever", "pediatrics"],
     createdAt: daysAgo(50)
   },
   {
-    patientName: "Sofia Rossi",
+    patientName: "Mariam Zafar",
     appointmentId: NumberLong("6"),
     medication: "Hydrocortisone cream 1%",
     dosage: "Apply thin layer twice daily for 7 days",
@@ -74,17 +74,17 @@ const result = db.prescriptions.insertMany([
     createdAt: daysAgo(44)
   },
   {
-    patientName: "Chen Wei",
+    patientName: "Saad Rehman",
     appointmentId: NumberLong("7"),
     medication: "Amoxicillin",
     dosage: "500 mg three times a day for 7 days",
     doctorNotes: "Complete the full course.",
-    pharmacy: { name: "City Care Pharmacy", location: "12 Market Street" },
+    pharmacy: { name: "Fazal Din Pharmacy", location: "Main Boulevard, Gulberg, Lahore" },
     tags: ["antibiotic", "infection"],
     createdAt: daysAgo(41)
   },
   {
-    patientName: "Fatima Noor",
+    patientName: "Hira Aslam",
     appointmentId: NumberLong("8"),
     medication: "Amlodipine",
     dosage: "5 mg once daily in the morning",
@@ -94,7 +94,7 @@ const result = db.prescriptions.insertMany([
     createdAt: daysAgo(38)
   },
   {
-    patientName: "Emma Davis",
+    patientName: "Sadia Khan",
     appointmentId: NumberLong("10"),
     medication: "Sertraline",
     dosage: "50 mg once daily",
@@ -104,7 +104,7 @@ const result = db.prescriptions.insertMany([
     createdAt: daysAgo(33)
   },
   {
-    patientName: "John Smith",
+    patientName: "Ali Hassan",
     appointmentId: NumberLong("12"),
     medication: "Cetirizine",
     dosage: "10 mg once daily for 14 days",
@@ -112,12 +112,12 @@ const result = db.prescriptions.insertMany([
     createdAt: daysAgo(27)
   },
   {
-    patientName: "Emma Davis",
+    patientName: "Sadia Khan",
     appointmentId: NumberLong("20"),
     medication: "Omeprazole",
     dosage: "20 mg once daily before breakfast for 4 weeks",
     doctorNotes: "Avoid spicy food.",
-    pharmacy: { name: "Wellness Pharmacy", location: "40 Hill Road" },
+    pharmacy: { name: "Servaid Pharmacy", location: "University Road, Peshawar" },
     tags: ["gastric"],
     createdAt: daysAgo(3)
   }
