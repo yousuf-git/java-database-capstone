@@ -1,0 +1,25 @@
+name: Lint backend
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  checkstyle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      # Google's style rules report as warnings, so only real errors fail the build.
+      - name: Run Checkstyle
+        working-directory: app
+        run: >
+          mvn -B org.apache.maven.plugins:maven-checkstyle-plugin:3.6.0:check
+          -Dcheckstyle.config.location=google_checks.xml
+          -Dcheckstyle.violationSeverity=error

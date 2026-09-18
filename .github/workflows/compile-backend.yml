@@ -1,0 +1,23 @@
+name: Compile backend
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      # Tests are skipped here: the only test starts the whole application and needs
+      # MySQL and MongoDB, which this job does not provide.
+      - name: Build with Maven
+        working-directory: app
+        run: mvn -B -DskipTests package

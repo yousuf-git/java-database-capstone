@@ -1,0 +1,24 @@
+name: Lint frontend
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Lint HTML
+        run: npx --yes htmlhint@1.1.4 "app/src/main/resources/static/**/*.html" "app/src/main/resources/templates/**/*.html"
+
+      - name: Lint CSS
+        run: npx --yes stylelint@16.12.0 "app/src/main/resources/static/assets/css/*.css"
+
+      - name: Lint JavaScript
+        run: npx --yes eslint@9.17.0 "app/src/main/resources/static/js/**/*.js"
